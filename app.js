@@ -2,6 +2,7 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
+const joi = require("joi");
 const path = require("path");
 const fs = require("fs");
 
@@ -16,7 +17,7 @@ const render = require("./lib/htmlRenderer");
 
 // Initial CLI Question To Select Team Member Type
 inquirer
-    .prompt([
+    .prompt(
         {
             type: 'list',
             name: 'employeeSelect',
@@ -27,23 +28,67 @@ inquirer
                 'Intern'
             ]
         }
-    ])
+    )
     .then(res => {
-        // console.log(String(res.employeeSelect));
 
         // Chooses the next question to ask based on the response above. 
         switch (res.employeeSelect) {
             case 'Manager':
-                console.log("YAS Manager")
+                console.log("YAS Manager");
+                inquirerManger();
                 break;
             case 'Engineer':
-                console.log("YAS Engineer")
+                console.log("YAS Engineer");
                 break;
             case 'Intern':
-                console.log("YAS Intern")
+                console.log("YAS Intern");
                 break;
         }
     });
+
+
+// Function to block users from not entering an answer in the inquirer questions.  
+function validateInput(input) {
+    if (!input) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+// Manager input collection function 
+const inquirerManger = () => {
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'name',
+                message: 'Input their first and last name:',
+                validate: validateInput
+            },
+            {
+                type: 'input',
+                name: 'id',
+                message: 'Input the 6 digit employee ID:',
+                validate: validateInput
+            },
+            {
+                type: 'input',
+                name: 'email',
+                message: 'Add their valid work email address:',
+                validate: validateInput
+            },
+            {
+                type: 'number',
+                name: 'officeNumber',
+                message: 'What is their office number?',
+                validate: validateInput
+            }
+        ])
+        .then(res => {
+            console.log(res);
+        })
+}
 
 
 
