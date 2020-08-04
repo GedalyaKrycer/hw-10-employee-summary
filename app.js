@@ -40,16 +40,13 @@ function employeeSelector() {
                     inquirerManger();
                     break;
                 case 'Engineer':
-                    console.log("YAS Engineer");
                     inquirerEngineer();
                     break;
                 case 'Intern':
-                    console.log("YAS Intern");
                     inquirerIntern();
                     break;
             }
         });
-
 }
 
 // Function to block users from not entering an answer in the inquirer questions.  
@@ -138,7 +135,7 @@ const inquirerEngineer = () => {
             {
                 type: 'input',
                 name: 'github',
-                message: 'What is their github url?',
+                message: 'What is their github username?',
                 validate: validateInput
             }
         ])
