@@ -52,7 +52,6 @@ function employeeSelector() {
 
 }
 
-
 // Function to block users from not entering an answer in the inquirer questions.  
 function validateInput(input) {
     if (!input) {
@@ -61,7 +60,6 @@ function validateInput(input) {
         return true;
     }
 }
-
 
 // Manager input collection function 
 const inquirerManger = () => {
@@ -111,9 +109,9 @@ const inquirerManger = () => {
             // Lets user add another person or save
             continueSelector();
 
-        })
+        });
 
-}
+};
 
 // Engineer input collection function 
 const inquirerEngineer = () => {
@@ -146,7 +144,7 @@ const inquirerEngineer = () => {
         ])
         .then(res => {
 
-            // Creates a new object based on the Manager class
+            // Creates a new object based on the Engineer class
             const newEngineer = new Engineer(
                 res.name,
                 res.id,
@@ -154,7 +152,7 @@ const inquirerEngineer = () => {
                 res.github
             );
 
-            // Adds manager to employeeRoster Array
+            // Adds Engineer to employeeRoster Array
             employeeRoster.push(newEngineer);
 
             // Confirms a successful addition
@@ -163,9 +161,61 @@ const inquirerEngineer = () => {
             // Lets user add another person or save
             continueSelector();
 
-        })
+        });
 
-}
+};
+
+// Engineer input collection function 
+const inquirerIntern = () => {
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'name',
+                message: 'Input their first and last name:',
+                validate: validateInput
+            },
+            {
+                type: 'input',
+                name: 'id',
+                message: 'Input the 6 digit employee ID:',
+                validate: validateInput
+            },
+            {
+                type: 'input',
+                name: 'email',
+                message: 'Add their valid work email address:',
+                validate: validateInput
+            },
+            {
+                type: 'input',
+                name: 'school',
+                message: 'What school are they from?',
+                validate: validateInput
+            }
+        ])
+        .then(res => {
+
+            // Creates a new object based on the Intern class
+            const newIntern = new Intern(
+                res.name,
+                res.id,
+                res.email,
+                res.school
+            );
+
+            // Adds Intern to employeeRoster Array
+            employeeRoster.push(newIntern);
+
+            // Confirms a successful addition
+            console.log(`You have queued ${res.name} as a new Intern!`);
+
+            // Lets user add another person or save
+            continueSelector();
+
+        });
+
+};
 
 // Lets user add another person or save
 const continueSelector = () => {
@@ -192,19 +242,17 @@ const continueSelector = () => {
                     for (let i = 0; i < employeeRoster.length; i++) {
 
                         // Confirms the employee's in the array
-                        console.log(`You have successfully added ${employeeRoster[i].name}.`)
+                        console.log(`You have successfully added ${employeeRoster[i].name}.`);
                     }
                     generateHTML();
             }
         });
 };
 
-
-
 // Builds the user's selections into an HTML page and writes it to the output folder
 const generateHTML = () => {
-    const outputHTML = render(employeeRoster)
+    const outputHTML = render(employeeRoster);
     fs.writeFile(outputPath, outputHTML, (err) => {
         if (err) throw err;
-    })
-}
+    });
+};
