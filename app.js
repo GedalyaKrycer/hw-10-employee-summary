@@ -200,6 +200,7 @@ const continueSelector = () => {
 };
 
 
+
 // Builds the user's selections into an HTML page and writes it to the output folder
 const generateHTML = () => {
     const outputHTML = render(employeeRoster)
