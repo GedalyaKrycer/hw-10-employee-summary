@@ -115,6 +115,58 @@ const inquirerManger = () => {
 
 }
 
+// Engineer input collection function 
+const inquirerEngineer = () => {
+    inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'name',
+                message: 'Input their first and last name:',
+                validate: validateInput
+            },
+            {
+                type: 'input',
+                name: 'id',
+                message: 'Input the 6 digit employee ID:',
+                validate: validateInput
+            },
+            {
+                type: 'input',
+                name: 'email',
+                message: 'Add their valid work email address:',
+                validate: validateInput
+            },
+            {
+                type: 'input',
+                name: 'github',
+                message: 'What is their github url?',
+                validate: validateInput
+            }
+        ])
+        .then(res => {
+
+            // Creates a new object based on the Manager class
+            const newEngineer = new Engineer(
+                res.name,
+                res.id,
+                res.email,
+                res.github
+            );
+
+            // Adds manager to employeeRoster Array
+            employeeRoster.push(newEngineer);
+
+            // Confirms a successful addition
+            console.log(`You have queued ${res.name} as a new Engineer!`);
+
+            // Lets user add another person or save
+            continueSelector();
+
+        })
+
+}
+
 // Lets user add another person or save
 const continueSelector = () => {
     inquirer
@@ -138,7 +190,7 @@ const continueSelector = () => {
                     break;
                 case 'Save & Exit':
                     for (let i = 0; i < employeeRoster.length; i++) {
-                        
+
                         // Confirms the employee's in the array
                         console.log(`You have successfully added ${employeeRoster[i].name}.`)
                     }
