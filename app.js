@@ -24,12 +24,11 @@ function employeeSelector() {
             {
                 type: 'list',
                 name: 'employeeSelect',
-                message: 'Welcome! Choose a new team member role to add.',
+                message: 'Choose a new team member role to add.',
                 choices: [
                     'Manager',
                     'Engineer',
-                    'Intern',
-                    'Save & Exit'
+                    'Intern'
                 ]
             }
         )
@@ -48,8 +47,6 @@ function employeeSelector() {
                     console.log("YAS Intern");
                     inquirerIntern();
                     break;
-                case 'Save & Exit':
-                    generateHTML();
             }
         });
 
@@ -109,29 +106,52 @@ const inquirerManger = () => {
             employeeRoster.push(newManager);
 
             // Confirms a successful addition
-            console.log(`You have added a ${res.name} as a new Manager!`);
-            employeeSelector();
+            console.log(`You have queued ${res.name} as a new Manager!`);
+
+            // Lets user add another person or save
+            continueSelector();
 
         })
 
 }
 
+// Lets user add another person or save
+const continueSelector = () => {
+    inquirer
+        .prompt(
+            {
+                type: 'list',
+                name: 'nextSteps',
+                message: 'Would you like to add someone new or save your current selection to finish?',
+                choices: [
+                    'Add another team member',
+                    'Save & Exit'
+                ]
+            }
+        )
+        .then(res => {
 
+            // Chooses if to restart the first question or save/exit. 
+            switch (res.nextSteps) {
+                case 'Add another team member':
+                    employeeSelector();
+                    break;
+                case 'Save & Exit':
+                    for (let i = 0; i < employeeRoster.length; i++) {
+                        
+                        // Confirms the employee's in the array
+                        console.log(`You have successfully added ${employeeRoster[i].name}.`)
+                    }
+                    generateHTML();
+            }
+        });
+};
+
+
+// Builds the user's selections into an HTML page and writes it to the output folder
 const generateHTML = () => {
     const outputHTML = render(employeeRoster)
     fs.writeFile(outputPath, outputHTML, (err) => {
         if (err) throw err;
     })
 }
-
-// After the user has input all employees desired, call the `render` function (required above) and pass in an array containing all employee objects; the `render` function will generate and return a block of HTML including templated divs for each employee!
-
-// After you have your html, you're now ready to create an HTML file using the HTML returned from the `render` function. Now write it to a file named `team.html` in the `output` folder. You can use the variable `outputPath` above target this location.
-
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
-
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
-
