@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@300;400;500;600;900&family=Roboto&display=swap');
+
+body {
+    font-family: 'Recursive', sans-serif;
+}
+
+h1 {
+    font-weight: 900;
+    color: white;
+}
+
+h2 {
+    font-size: 1.7rem;
+    margin-top: 5px;
+    color: #052d80;
+}
+
+h3 {
+    font-weight: 400;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: grey;
+}
+
+.list-group-item {
+    font-family: 'Roboto', sans-serif;
+    border: none;
+}
+
+.jumbotron {
+    background: rgb(37,140,255);
+    background: -moz-linear-gradient(0deg, rgba(37,140,255,1) 0%, rgba(47,213,250,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(37,140,255,1) 0%, rgba(47,213,250,1) 100%);
+    background: linear-gradient(0deg, rgba(37,140,255,1) 0%, rgba(47,213,250,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#258cff",endColorstr="#2fd5fa",GradientType=1);
+
+    box-shadow: 0px -13px 20px -10px rgba(0,0,0,0.3) inset
+}
+
+.card-header {
+    text-align: center;
+    background-color: white;
+}
+
+.employee-card {
+    background-color: #fff;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.10);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.10);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.10);
+}
+
+.list-item {
+    font-family: 'Recursive', sans-serif;
+    font-weight: 600;
+}
+
+.list-group {
+    text-align: center;
+}

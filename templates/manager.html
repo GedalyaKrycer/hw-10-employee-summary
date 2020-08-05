@@ -1,13 +1,14 @@
-<div class="card employee-card">
+<div class="employee-card col-md-4 mt-4">
     <div class="card-header">
         <h2 class="card-title">{{ name }}</h2>
         <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i>{{ role }}</h3>
     </div>
     <div class="card-body">
         <ul class="list-group">
-            <li class="list-group-item">ID: {{ id }}</li>
-            <li class="list-group-item">Email: <a href="mailto:{{ email }}">{{ email }}</a></li>
-            <li class="list-group-item">Office number: {{ officeNumber }}</li>
+            <li class="list-group-item"><span class="list-item">ID: </span>{{ id }}</li>
+            <li class="list-group-item"><span class="list-item">Email: </span><a
+                    href="mailto:{{ email }}">{{ email }}</a></li>
+            <li class="list-group-item"><span class="list-item">Office number: </span>{{ officeNumber }}</li>
         </ul>
     </div>
 </div>
