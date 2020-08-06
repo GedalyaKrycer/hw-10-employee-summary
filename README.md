@@ -23,3 +23,5 @@ The most of the JS, HTML and testing had been provided as a framework. I focused
 1. There is a comma that appears between the cards which is most likely an error in one of the JS files. 
 
 2. I would like to add more robust validation for the inquirer prompts, so it is specifics to numbers, emails and urls. At the moment I am just making sure people don't skip an answer. 
+
+3. Adding a gif preview to this README of the app working.
